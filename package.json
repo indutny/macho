@@ -1,0 +1,28 @@
+{
+  "name": "macho",
+  "version": "0.0.0",
+  "description": "mach-o format parser",
+  "main": "lib/macho.js",
+  "scripts": {
+    "test": "mocha --reporter spec test/*-test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:indutny/macho"
+  },
+  "keywords": [
+    "mach-o",
+    "mac",
+    "executable",
+    "format"
+  ],
+  "author": "Fedor Indutny <fedor@indutny.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/indutny/macho/issues"
+  },
+  "homepage": "https://github.com/indutny/macho",
+  "devDependencies": {
+    "mocha": "^1.17.1"
+  }
+}
