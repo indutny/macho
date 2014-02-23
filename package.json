@@ -24,5 +24,8 @@
   "homepage": "https://github.com/indutny/macho",
   "devDependencies": {
     "mocha": "^1.17.1"
+  },
+  "dependencies": {
+    "endian-reader": "^0.1.0"
   }
 }
