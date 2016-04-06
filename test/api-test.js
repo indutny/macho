@@ -11,5 +11,9 @@ describe('macho', function() {
       return cmd.type === 'version_min_macosx' &&
              cmd.version === '10.5.0';
     }));
+    assert(exe.cmds.some(function(cmd) {
+      return cmd.type === 'function_starts' &&
+             cmd.addresses.length;
+    }));
   });
 });
