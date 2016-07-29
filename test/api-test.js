@@ -9,7 +9,7 @@ describe('macho', function() {
     assert.equal(exe.filetype, 'execute');
     assert(exe.cmds.some(function(cmd) {
       return cmd.type === 'version_min_macosx' &&
-             cmd.version === '10.5.0';
+             cmd.version === '10.7.0';
     }));
     assert(exe.cmds.some(function(cmd) {
       return cmd.type === 'function_starts' &&
