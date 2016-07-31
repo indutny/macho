@@ -13,7 +13,7 @@ var exec = macho.parse(data);
 
 This software is licensed under the MIT License.
 
-Copyright Fedor Indutny, 2014.
+Copyright Fedor Indutny, 2014-2016.
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the
