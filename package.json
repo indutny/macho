@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/indutny/macho",
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "mocha": "^10.2.0"
   },
   "dependencies": {
     "endian-reader": "^0.1.0"
