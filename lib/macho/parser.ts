@@ -20,11 +20,11 @@ export class Parser extends Reader {
         if (off + 4 > buf.length) {
             throw new Error("lc_str OOB");
         }
-        var offset = super.readUInt32(buf, off) - 8;
+        const offset = super.readUInt32(buf, off) - 8;
         if (offset > buf.length) {
             throw new Error("lc_str offset OOB");
         }
-        return this.parseCStr(buf.slice(offset));
+        return this.parseCStr(buf.subarray(offset));
     }
 
     // TODO return null or optional instead of the original boolean
@@ -87,7 +87,7 @@ export class Parser extends Reader {
 
             cmds: null,
             hsize: bits === 32 ? 28 : 32,
-            body: bits === 32 ? buf.slice(28) : buf.slice(32)
+            body: bits === 32 ? buf.subarray(28) : buf.subarray(32)
         };
     }
 
@@ -125,7 +125,7 @@ export class Parser extends Reader {
             if (offset + size > buf.length) {
                 throw new Error('Command body OOB');
             }
-            const body = buf.slice(offset, offset + size);
+            const body = buf.subarray(offset, offset + size);
             offset += size;
             if (offset & align) {
                 offset += align - (offset & align);
@@ -145,7 +145,7 @@ export class Parser extends Reader {
 
         const dataoff = super.readUInt32(buf, 0);
         const datasize = super.readUInt32(buf, 4);
-        const data = file.slice(dataoff, dataoff + datasize);
+        const data = file.subarray(dataoff, dataoff + datasize);
 
         const addresses = [];
         let address = 0; // TODO? use start address / "base address"
@@ -187,9 +187,9 @@ export class Parser extends Reader {
             throw new Error('Segment command OOB');
         }
 
-        const name = this.parseCStr(buf.slice(0, 16));
+        const name = this.parseCStr(buf.subarray(0, 16));
 
-        if (type === 'segment') {
+        if (type === "segment") {
             var vmaddr = super.readUInt32(buf, 16);
             var vmsize = super.readUInt32(buf, 20);
             var fileoff = super.readUInt32(buf, 24);
@@ -210,7 +210,7 @@ export class Parser extends Reader {
         }
 
         function prot(p: any): Protection {
-            var res = { read: false, write: false, exec: false };
+            const res = { read: false, write: false, exec: false };
             if (p !== constants.prot.none) {
                 res.read = (p & constants.prot.read) !== 0;
                 res.write = (p & constants.prot.write) !== 0;
@@ -225,8 +225,8 @@ export class Parser extends Reader {
             if (off + sectSize > buf.length) {
                 throw new Error("Segment OOB");
             }
-            const sectname = this.parseCStr(buf.slice(off, off + 16));
-            const segname = this.parseCStr(buf.slice(off + 16, off + 32));
+            const sectname = this.parseCStr(buf.subarray(off, off + 16));
+            const segname = this.parseCStr(buf.subarray(off + 16, off + 32));
 
             if (type === "segment") {
                 var addr = super.readUInt32(buf, off + 32);
@@ -262,7 +262,7 @@ export class Parser extends Reader {
                     sys: this.mapFlags(flags & constants.segAttrSysMask,
                         constants.segAttrSys)
                 },
-                data: file.slice(offset, offset + size)
+                data: file.subarray(offset, offset + size)
             });
         }
 
@@ -283,7 +283,7 @@ export class Parser extends Reader {
 
     parseLinkEdit(type: any, buf: Buffer): LinkEdit {
         if (buf.length !== 8) {
-            throw new Error('link_edit OOB');
+            throw new Error("link_edit OOB");
         }
 
         return {
@@ -299,7 +299,7 @@ export class Parser extends Reader {
                 break;
             }
         }
-        return buf.slice(0, i).toString();
+        return buf.subarray(0, i).toString();
     }
 
     parseCommand(type: string, buf: Buffer, file: any): LoadCommand {
@@ -387,7 +387,7 @@ export class Parser extends Reader {
         if (buf.length !== 16) {
             throw new Error('encryptinfo64 OOB');
         }
-        return this.parseEncryptionInfo(type, buf.slice(0, 12));
+        return this.parseEncryptionInfo(type, buf.subarray(0, 12));
     }
 
     parseDysymtab(type: any, buf: any): Dysymtab {
