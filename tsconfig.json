@@ -14,6 +14,7 @@
   },
   "include": [
     "lib/*.ts",
-    "lib/macho/*.ts"
+    "lib/macho/*.ts",
+    "test/*.ts"
   ]
 }
