@@ -4,7 +4,7 @@
   "description": "mach-o format parser",
   "type": "module",
   "main": "dist/lib/macho.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/lib/macho.d.ts",
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
