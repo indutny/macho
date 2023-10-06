@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "ES2020",
+    "lib": ["ES2020"],
+    "module": "Node16",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "Node16",
+    "declaration": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "outDir": "./dist"
+  },
+  "include": [
+    "lib/*.ts",
+    "lib/macho/*.ts",
+    "test/*.ts"
+  ]
+}
